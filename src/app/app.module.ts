@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -34,7 +35,11 @@ import { environment } from '../environments/environment';
     MyOrdersComponent
   ],
   imports: [
-    BrowserModule, NgbModule, AngularFireModule.initializeApp(environment.firebase), RouterModule.forRoot([
+    BrowserModule,
+    NgbModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
@@ -49,4 +54,4 @@ import { environment } from '../environments/environment';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
