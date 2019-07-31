@@ -66,7 +66,7 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
