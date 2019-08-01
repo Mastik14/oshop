@@ -32,6 +32,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule, MatCardModule, MatChipsModule, MatInputModule, MatDividerModule, MatSlideToggleModule } from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BsNavbarComponent,
     ShoppingCartComponent,
     MyOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
