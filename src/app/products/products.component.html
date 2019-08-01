@@ -2,14 +2,14 @@
   <div class="col-3">
     <app-product-filter [category]="category"></app-product-filter>
   </div>
-  <div class="col">
-    <div class="row">
-        <ng-container *ngFor="let p of filteredProducts; let i = index">
-          <div class="col">
-            <app-product-card [product]="p"></app-product-card>
-          </div>
-          <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+
+  <div class="col-9">
+    <div class="container">
+      <div class="row" *ngIf="cart$ | async as cart">
+        <ng-container *ngFor="let p of filteredProducts; let i =index">
+            <app-product-card class="col-lg-4 col-md-6" [product]="p" [shopping-cart]="cart" [show-actions]="true"></app-product-card>
         </ng-container>
       </div>
+    </div>
   </div>
 </div>
