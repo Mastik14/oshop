@@ -1,10 +1,11 @@
-import { ShoppingCart } from '../../../shared/models/shopping-cart';
-import { OrderService } from '../../../shared/services/order.service';
-import { AuthService } from '../../../shared/services/auth.service';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Order } from '../../../shared/models/order';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../shared/services/auth.service';
+import { OrderService } from '../../../shared/services/order.service';
+import { ShoppingCart } from '../../../shared/models/shopping-cart';
+import { Shipping } from '../../../shared/models/shipping';
 
 @Component({
   selector: 'app-shipping-form',
@@ -13,27 +14,27 @@ import { Order } from '../../../shared/models/order';
 })
 export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input('cart') cart: ShoppingCart;
-  shipping = {};
-  userSubscription: Subscription;
+  shipping: any = {};
   userId: string;
-
+  ship: any;
+  Subscription: Subscription;
   constructor(
     private router: Router,
     private authService: AuthService,
-    private orderService: OrderService) {
-  }
+    private orderService: OrderService
+  ) {}
 
-  ngOnInit() {
-    this.userSubscription = this.authService.user$.subscribe(user => this.userId = user.uid);
+  async ngOnInit() {
+    this.Subscription = this.authService.user$.subscribe(
+      user => (this.userId = user.uid)
+    );
   }
-
   ngOnDestroy() {
-    this.userSubscription.unsubscribe();
+    this.Subscription.unsubscribe();
   }
-
   async placeOrder() {
-    const order = new Order(this.userId, this.shipping, this.cart);
+    const order = new Order(this.userId, this.shipping, this.cart, this.ship);
     const result = await this.orderService.placeOrder(order);
-    this.router.navigate(['/order-success', result.key]);
+    this.router.navigate(['order-success', result.key]);
   }
 }

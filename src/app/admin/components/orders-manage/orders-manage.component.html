@@ -1,0 +1,27 @@
+<div *ngIf="orderDatePlaced | async as orderDate">
+  <p class="font-weight-bold">Order Number：{{orderDate.datePlaced}}</p>
+</div>
+
+<table class="table table-sm table-hover">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th scope="col">Product name</th>
+    <th scope="col">Price</th>
+    <th scope="col">Quantity</th>
+    <th scope="col">Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of order$ | async; let i = index">
+    <td>{{ i + 1 }}</td>
+    <th>{{ order.product.title }}</th>
+    <td>{{ order.product.price }}</td>
+    <td>{{ order.quantity }}</td>
+    <td>{{ order.totalPrice }}</td>
+  </tr>
+  </tbody>
+</table>
+<button mat-raised-button color="primary" class="float-left" routerLink="/admin/orders">
+  <i class="fas fa-long-arrow-alt-left"></i>
+</button>
